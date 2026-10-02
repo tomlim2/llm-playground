@@ -3,11 +3,14 @@
 LLM이랑 같이 만들어서 배포한 작업물 링크 모음. 카드 하나 = 썸네일 + 페이지 제목 + URL + 배포 버전.
 https://tomlim2.github.io/llm-playground/
 
+기술 스펙, 데이터 구조, 배포 방식까지 전체 설명은 [MAP.md](MAP.md).
+
 ## 작업물 추가
 
 [`projects.json`](projects.json) 에 URL 한 줄 추가하고 push 하면 끝 (위에 있을수록 앞에 나옴).
 1시간 안에 Sync 가 썸네일을 찍어서 허브를 다시 배포함. 바로 보려면 GitHub 의 Actions → Sync → Run workflow.
-로컬에서 먼저 보려면 `npm run thumbs` → `npm run dev`.
+로컬에서 먼저 보려면 `npm run thumbs` → `npm run dev` 로 확인 → 커밋 → `npm version patch` 로 배포.
+작업물을 빼거나 순서·옵션만 바꾼 건 Sync 가 감지하지 않으니 커밋 → `npm version patch`.
 
 항목에 붙일 수 있는 옵션 (전부 선택):
 
