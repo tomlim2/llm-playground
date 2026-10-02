@@ -16,11 +16,12 @@
     "deploySha": "3d7ce9ce231a88ca0ae6a29628b785ae5bf36b85"
   },
   "https://tomlim2.github.io/goofy-procedural-creatures/": {
-    "title": "MENAGERIE — draw your creature",
+    "title": "MENAGERIE — goofy procedural creatures",
     "thumb": "thumbs/tomlim2-github-io-goofy-procedural-creatures.jpg",
     "capturedAt": "2026-10-02",
+    "version": "v1.1.0",
     "deployedAt": "2026-10-02",
-    "deploySha": "180c5cfee94b101e3c096b175f7e90178c949112"
+    "deploySha": "99a1cfdf6c68946ef3b573f718104c9dfb310f38"
   },
   "https://tomlim2.github.io/riso-graphic/": {
     "title": "RISO GRAPHIC — 리소 스타일 샘플",
