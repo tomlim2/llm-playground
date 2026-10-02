@@ -1,5 +1,6 @@
 # 매시간 각 작업물의 최신 GitHub Pages 배포를 확인해서
 # 새로 추가됐거나 다시 배포된 것만 썸네일·버전을 갱신하고, 바뀐 게 있으면 커밋한 뒤 허브를 다시 배포
+# 캡처에 실패한 작업물이 있어도 나머지는 갱신·배포하고, 실행은 맨 끝에서 실패로 표시
 name: Sync
 
 on:
@@ -53,7 +54,9 @@ jobs:
       - name: 스크린샷용 한글·이모지 폰트
         run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-color-emoji
       - run: npm ci
-      - run: node scripts/capture.mjs $ONLY
+      - id: capture
+        run: node scripts/capture.mjs $ONLY
+        continue-on-error: true # 하나가 실패해도 찍힌 건 커밋·배포하고, 실패는 맨 끝에서 알림
         env:
           ONLY: ${{ inputs.only }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -72,3 +75,8 @@ jobs:
           path: dist
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: 캡처 실패 알림
+        if: steps.capture.outcome == 'failure'
+        run: |
+          echo '::error::캡처에 실패한 작업물이 있어요. "node scripts/capture.mjs" 단계 로그를 확인하세요.'
+          exit 1

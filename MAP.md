@@ -49,7 +49,7 @@ MAP.md                  이 문서
 [
   { "url": "https://tomlim2.github.io/dice-roll/" },
   {
-    "url": "https://tomlim2.github.io/goofy-procedural-creatures/",
+    "url": "https://tomlim2.github.io/some-app/",
     "actions": [["fill", "#name", "menagerie"], ["press", "#name", "Enter"]]
   },
   { "url": "https://tomlim2.github.io/mmd-anju/", "wait": 7000 }
@@ -123,14 +123,16 @@ URL 을 키로 한 객체. `capture.mjs` 가 projects.json 순서대로 다시 �
 - `GET /repos/{repo}/deployments?environment=github-pages&per_page=1` → 그 배포의 최신 status
 - status 가 `success` 가 아니면 (진행 중·실패) 건너뜀. 실제 사이트는 아직 이전 배포라서
 - 성공한 지 10분(`SETTLE_MS`)이 안 됐으면 건너뜀. Pages CDN 이 옛 화면을 줄 수 있어서. 다음 확인 때 찍힌다
-- 버전: 배포 ref 가 `v…` 태그면 그것 → 아니면 배포 커밋에 붙은 `v…` 태그 (최근 태그 20개 중) → 없으면 없음
+- 버전: 배포 ref 가 `v…` 태그면 그것 → 아니면 배포 커밋에 붙은 `v…` 태그 → 아니면 배포 커밋 메시지가 `deploy v… [소스 sha]` 꼴일 때 그 태그 → 없으면 없음
+  - 태그는 최근 20개 중에서 찾음
+  - 메시지 방식은 `gh-pages` 같은 배포용 브랜치용: 태그는 소스 커밋에 붙고 배포 커밋(Pages 가 보는 커밋)에는 없어서. 실제 있는 태그만 쓰고, 메시지에 sha 가 있으면 그 태그가 가리키는 커밋과 같을 때만 씀 (태그가 옮겨졌으면 버전 없음)
 
 ### 캡처 과정
 
 - 설치된 Chrome (`channel: 'chrome'`), 뷰포트 1280×800, 작업물마다 새 탭
 - `load` 까지 대기 (최대 30초) → `actions` 실행 → `wait` ms 대기 → JPEG (품질 82) 저장
 - CI (`CI` 환경변수가 있을 때)는 GPU 가 없어서 `--use-angle=swiftshader --enable-unsafe-swiftshader` 로 WebGL 을 소프트웨어 렌더링
-- 실패한 작업물은 meta 를 고치지 않음 → 다음 실행 때 다시 시도. Actions 에서는 경고(annotation)로 남김
+- 실패한 작업물은 meta 를 고치지 않음 → 다음 실행 때 다시 시도. 나머지는 그대로 저장하고, 마지막에 종료 코드 1 로 끝남. Actions 에서는 오류(annotation)로도 남김
 - GitHub API 토큰: `GITHUB_TOKEN` 또는 `GH_TOKEN`. 없으면 비인증 (시간당 60회, 로컬에서는 충분)
 
 ## 배포
@@ -154,9 +156,10 @@ npm version patch   # minor / major 도 됨
 - `check` 잡: 의존성 설치 없이 `node scripts/capture.mjs --check`. 바뀐 게 없으면 여기서 끝 (몇 초)
 - `update` 잡 (바뀐 게 있을 때만):
   1. 한글·이모지 폰트 설치 (`fonts-noto-cjk`, `fonts-noto-color-emoji`)
-  2. `npm ci` → `node scripts/capture.mjs`
+  2. `npm ci` → `node scripts/capture.mjs` (`continue-on-error`: 실패한 작업물이 있어도 다음 단계로 감)
   3. 바뀐 파일이 있으면 `github-actions[bot]` 이름으로 `Update thumbnails` 커밋 → main 에 push
   4. `npm run build` → Pages 배포 (main 에서 배포)
+  5. 2번에서 실패한 작업물이 있었으면 마지막 단계에서 job 을 실패 처리. 찍힌 작업물은 이미 커밋·배포된 뒤이고, Actions 탭에서 빨간 실행으로 눈에 띔
 - 작업물 쪽 저장소는 아무것도 바꿀 필요 없음. 반영까지 최대 약 1시간 10분
 
 ### 3. GitHub 설정 (한 번만, 이미 해 둠)
@@ -181,8 +184,8 @@ npm version patch   # minor / major 도 됨
 | 작업물 | 저장소 | 배포 방식 | 카드 표시 |
 |---|---|---|---|
 | 주사위 굴리기 | tomlim2/dice-roll | `v*` 태그 → Actions | `v0.2.0` |
-| 뽕짝 가위바위보 | tomlim2/rock-paper-scissors | `npm run deploy` 가 gh-pages 브랜치에 push | 날짜 |
-| MENAGERIE | tomlim2/goofy-procedural-creatures | `v*` 태그 또는 수동 실행 → Actions (지금은 main 을 수동 배포) | 날짜 |
+| 뽕짝 가위바위보 | tomlim2/rock-paper-scissors | `npm run deploy` 가 gh-pages 브랜치에 push (커밋 메시지 `deploy v0.3.0 <sha>` 에서 버전을 읽음) | `v0.3.0` |
+| MENAGERIE | tomlim2/goofy-procedural-creatures | `v*` 태그 또는 수동 실행 → Actions | `v1.1.0` |
 | RISO GRAPHIC | tomlim2/riso-graphic | main 브랜치 루트 (push 할 때마다) | 날짜 |
 | MMD Player | tomlim2/mmd-anju | `v*` 태그 → Actions | `v1.0.3` |
 | Matcap Painter | tomlim2/matcap-painter | main 브랜치 (push 할 때마다) | 날짜 |

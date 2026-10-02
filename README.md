@@ -26,8 +26,9 @@ https://tomlim2.github.io/llm-playground/
 
 [`.github/workflows/sync.yml`](.github/workflows/sync.yml) 이 매시 17분에 각 작업물의 최신 GitHub Pages 배포를 확인함.
 
-- 새로 추가됐거나 다시 배포된 작업물만 썸네일을 다시 찍고 카드의 버전을 갱신 (태그로 배포됐으면 `v1.2.3`, 아니면 배포 날짜)
+- 새로 추가됐거나 다시 배포된 작업물만 썸네일을 다시 찍고 카드의 버전을 갱신 (태그로 배포됐으면 `v1.2.3`, 아니면 배포 날짜. `gh-pages` 배포 커밋 메시지가 `deploy v1.2.3 …` 꼴이면 그 버전)
 - 바뀐 게 있으면 `Update thumbnails` 커밋을 main 에 push 하고 허브를 다시 배포
+- 캡처에 실패한 작업물이 있어도 나머지는 그대로 갱신·배포하고, 그 실행은 맨 끝에서 실패(빨간색)로 표시. 실패한 작업물은 다음 확인 때 다시 시도
 - 배포가 끝난 지 10분이 안 됐으면 Pages CDN 에 옛 화면이 남아 있을 수 있어서 다음 확인 때 찍음
 - Actions → Sync → Run workflow 에 URL 일부를 넣으면 그것만 바로 다시 찍음
 

@@ -11,6 +11,7 @@
     "title": "뽕짝 가위바위보 vs Claude",
     "thumb": "thumbs/tomlim2-github-io-rock-paper-scissors.jpg",
     "capturedAt": "2026-10-02",
+    "version": "v0.3.0",
     "deployedAt": "2026-09-26",
     "deploySha": "3d7ce9ce231a88ca0ae6a29628b785ae5bf36b85"
   },

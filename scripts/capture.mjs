@@ -1,6 +1,7 @@
 // 작업물 썸네일·버전 동기화.
 // projects.json 의 URL 중 새로 추가됐거나 GitHub Pages 에 다시 배포된 것만 Chrome 으로 열어서
 // 스크린샷(public/thumbs)을 찍고, 페이지 제목과 배포 버전(src/meta.json)을 저장
+// 찍다가 실패한 작업물이 있어도 나머지는 저장하고, 마지막에 종료 코드 1 로 끝남
 //
 //   npm run thumbs              새로 추가됐거나 다시 배포된 것만
 //   npm run thumbs -- --all     전부 다시
@@ -65,6 +66,7 @@ if (flags.has('--check')) {
 
 // ── 2. 찍기 ──────────────────────────────────────────
 
+let failures = 0;
 if (queue.length === 0) {
   console.log('새로 찍을 게 없어요. 다시 찍으려면 --all 이나 URL 일부를 넘겨주세요.');
 } else {
@@ -101,9 +103,10 @@ if (queue.length === 0) {
       console.log('완료');
     } catch (error) {
       // 실패한 건 meta 를 안 고치니 다음 Sync 때 다시 시도됨
+      failures += 1;
       const message = error.message.split('\n')[0];
       console.log(`실패 — ${message}`);
-      if (process.env.GITHUB_ACTIONS) console.log(`::warning::${project.url} 캡처 실패: ${message}`);
+      if (process.env.GITHUB_ACTIONS) console.log(`::error::${project.url} 캡처 실패: ${message}`);
     } finally {
       await page.close();
     }
@@ -116,6 +119,12 @@ if (queue.length === 0) {
 // projects.json 순서대로. 목록에서 빠진 URL 은 여기서 정리됨
 const ordered = Object.fromEntries(projects.filter(({ url }) => meta[url]).map(({ url }) => [url, meta[url]]));
 await writeFile(pathOf('src/meta.json'), `${JSON.stringify(ordered, null, 2)}\n`);
+
+// 하나라도 실패했으면 종료 코드로 알림 (찍힌 나머지는 위에서 이미 저장함)
+if (failures > 0) {
+  console.log(`\n❌ ${failures}건 캡처 실패`);
+  process.exitCode = 1;
+}
 
 /**
  * 그 작업물의 가장 최근 GitHub Pages 배포: 커밋, 태그로 배포됐으면 버전, 날짜.
@@ -133,6 +142,13 @@ async function latestDeploy(project) {
     // 브랜치로 배포됐어도 그 커밋에 버전 태그가 붙어 있으면 그걸로
     const tags = (await github(`/repos/${repo}/tags?per_page=20`)) ?? [];
     version = tags.find((tag) => tag.commit.sha === deployment.sha && /^v\d/.test(tag.name))?.name ?? null;
+    if (!version) {
+      // gh-pages 같은 배포용 브랜치는 태그가 소스 커밋에만 붙고 배포 커밋엔 없음.
+      // 대신 배포 커밋 메시지가 "deploy v0.3.0 <소스 sha>" 꼴이면 그 태그로 (실제 있는 태그만, sha 가 있으면 태그 커밋과 같을 때만)
+      const { message = '' } = (await github(`/repos/${repo}/git/commits/${deployment.sha}`)) ?? {};
+      const [, name, built] = message.match(/^deploy\s+(v\d\S*)(?:\s+([0-9a-f]{40}))?/i) ?? [];
+      version = tags.find((tag) => tag.name === name && (!built || tag.commit.sha === built))?.name ?? null;
+    }
   }
   return { sha: deployment.sha, version, date: deployment.created_at.slice(0, 10) };
 }
