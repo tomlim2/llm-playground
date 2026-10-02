@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "thumbs": "node scripts/capture.mjs",
+    "preversion": "git pull --rebase",
     "postversion": "git push --follow-tags"
   },
   "devDependencies": {

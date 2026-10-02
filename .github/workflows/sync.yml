@@ -1,0 +1,74 @@
+# 매시간 각 작업물의 최신 GitHub Pages 배포를 확인해서
+# 새로 추가됐거나 다시 배포된 것만 썸네일·버전을 갱신하고, 바뀐 게 있으면 커밋한 뒤 허브를 다시 배포
+name: Sync
+
+on:
+  schedule:
+    - cron: '17 * * * *' # 매시 17분 (정각은 GitHub 예약 실행이 몰려서 피함)
+  workflow_dispatch:
+    inputs:
+      only:
+        description: 'URL 에 이 글자가 들어간 작업물만 다시 찍기 (비우면 바뀐 것만)'
+        required: false
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 바뀐 게 있는지만 봄. 대부분의 실행은 여기서 끝나서 몇 초면 됨
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - id: check
+        run: node scripts/capture.mjs --check $ONLY
+        env:
+          ONLY: ${{ inputs.only }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  update:
+    needs: check
+    if: needs.check.outputs.changed == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: 스크린샷용 한글·이모지 폰트
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-color-emoji
+      - run: npm ci
+      - run: node scripts/capture.mjs $ONLY
+        env:
+          ONLY: ${{ inputs.only }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 커밋
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/thumbs src/meta.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update thumbnails'
+            git push
+          fi
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

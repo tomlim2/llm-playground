@@ -16,6 +16,11 @@ function renderCard(project, index) {
   item.querySelector('.title').textContent = project.title || info.title || shortUrl(project.url);
   item.querySelector('.url').textContent = shortUrl(project.url);
 
+  // 태그로 배포됐으면 버전, 브랜치로 배포됐으면 배포 날짜
+  const version = item.querySelector('.version');
+  version.textContent = info.version ?? info.deployedAt?.replaceAll('-', '.') ?? '';
+  if (info.deployedAt) version.title = `${info.deployedAt} 배포`;
+
   // 다시 찍으면 파일 이름은 그대로라 찍은 날짜를 붙여 캐시를 피함
   const thumb = project.thumb ?? (info.thumb && `${info.thumb}?v=${info.capturedAt}`);
   const img = item.querySelector('img');

@@ -2,31 +2,45 @@
   "https://tomlim2.github.io/dice-roll/": {
     "title": "주사위 굴리기",
     "thumb": "thumbs/tomlim2-github-io-dice-roll.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "version": "v0.2.0",
+    "deployedAt": "2026-10-02",
+    "deploySha": "7d62930b3b2982af98d4ad51ca97a7260a293bc7"
   },
   "https://tomlim2.github.io/rock-paper-scissors/": {
     "title": "뽕짝 가위바위보 vs Claude",
     "thumb": "thumbs/tomlim2-github-io-rock-paper-scissors.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "deployedAt": "2026-09-26",
+    "deploySha": "3d7ce9ce231a88ca0ae6a29628b785ae5bf36b85"
   },
   "https://tomlim2.github.io/goofy-procedural-creatures/": {
     "title": "MENAGERIE — draw your creature",
     "thumb": "thumbs/tomlim2-github-io-goofy-procedural-creatures.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "deployedAt": "2026-10-02",
+    "deploySha": "180c5cfee94b101e3c096b175f7e90178c949112"
   },
   "https://tomlim2.github.io/riso-graphic/": {
     "title": "RISO GRAPHIC — 리소 스타일 샘플",
     "thumb": "thumbs/tomlim2-github-io-riso-graphic.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "deployedAt": "2026-10-02",
+    "deploySha": "a189cd11f30edfa70c0dcecfd6f968e8c7be2f89"
   },
   "https://tomlim2.github.io/mmd-anju/": {
     "title": "MMD Player",
     "thumb": "thumbs/tomlim2-github-io-mmd-anju.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "version": "v1.0.3",
+    "deployedAt": "2026-09-17",
+    "deploySha": "50f8dd8f7062fd2a75de8ec43449a9ea7f41288e"
   },
   "https://tomlim2.github.io/matcap-painter/": {
     "title": "Matcap Painter",
     "thumb": "thumbs/tomlim2-github-io-matcap-painter.jpg",
-    "capturedAt": "2026-10-02"
+    "capturedAt": "2026-10-02",
+    "deployedAt": "2026-03-07",
+    "deploySha": "6c7c626d42584bec9dd1f82b1c643cc093d4634a"
   }
 }
