@@ -1,0 +1,32 @@
+{
+  "https://tomlim2.github.io/dice-roll/": {
+    "title": "주사위 굴리기",
+    "thumb": "thumbs/tomlim2-github-io-dice-roll.jpg",
+    "capturedAt": "2026-10-02"
+  },
+  "https://tomlim2.github.io/rock-paper-scissors/": {
+    "title": "뽕짝 가위바위보 vs Claude",
+    "thumb": "thumbs/tomlim2-github-io-rock-paper-scissors.jpg",
+    "capturedAt": "2026-10-02"
+  },
+  "https://tomlim2.github.io/goofy-procedural-creatures/": {
+    "title": "MENAGERIE — draw your creature",
+    "thumb": "thumbs/tomlim2-github-io-goofy-procedural-creatures.jpg",
+    "capturedAt": "2026-10-02"
+  },
+  "https://tomlim2.github.io/riso-graphic/": {
+    "title": "RISO GRAPHIC — 리소 스타일 샘플",
+    "thumb": "thumbs/tomlim2-github-io-riso-graphic.jpg",
+    "capturedAt": "2026-10-02"
+  },
+  "https://tomlim2.github.io/mmd-anju/": {
+    "title": "MMD Player",
+    "thumb": "thumbs/tomlim2-github-io-mmd-anju.jpg",
+    "capturedAt": "2026-10-02"
+  },
+  "https://tomlim2.github.io/matcap-painter/": {
+    "title": "Matcap Painter",
+    "thumb": "thumbs/tomlim2-github-io-matcap-painter.jpg",
+    "capturedAt": "2026-10-02"
+  }
+}

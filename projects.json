@@ -1,0 +1,11 @@
+[
+  { "url": "https://tomlim2.github.io/dice-roll/" },
+  { "url": "https://tomlim2.github.io/rock-paper-scissors/" },
+  {
+    "url": "https://tomlim2.github.io/goofy-procedural-creatures/",
+    "actions": [["fill", "#name", "menagerie"], ["press", "#name", "Enter"]]
+  },
+  { "url": "https://tomlim2.github.io/riso-graphic/" },
+  { "url": "https://tomlim2.github.io/mmd-anju/", "wait": 7000 },
+  { "url": "https://tomlim2.github.io/matcap-painter/" }
+]

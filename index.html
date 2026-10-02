@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLM Works</title>
+    <meta name="description" content="LLM과 함께 만들어 배포한 작업물 모음" />
+    <meta property="og:title" content="LLM Works" />
+    <meta property="og:description" content="LLM과 함께 만들어 배포한 작업물 모음" />
+    <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="masthead">
+        <div>
+          <h1>LLM Works</h1>
+          <p>LLM과 함께 만들어 배포한 것들</p>
+        </div>
+        <span id="count" class="count"></span>
+      </header>
+
+      <main>
+        <ul id="grid" class="grid"></ul>
+      </main>
+
+      <footer class="footer">
+        <a href="https://github.com/tomlim2">github.com/tomlim2</a>
+      </footer>
+    </div>
+
+    <template id="card-template">
+      <li class="item">
+        <a class="card" target="_blank" rel="noopener">
+          <div class="thumb"><img alt="" loading="lazy" decoding="async" width="1280" height="800" /></div>
+          <div class="info">
+            <h2 class="title"></h2>
+            <span class="url"></span>
+            <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 17 17 7M8 7h9v9" />
+            </svg>
+          </div>
+        </a>
+      </li>
+    </template>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,225 @@
+:root {
+  --bg: #f5f4f0;
+  --surface: #e8e6e0;
+  --text: #1b1b1a;
+  --dim: #74726c;
+  --line: rgba(27, 27, 26, 0.1);
+  --shadow: 0 22px 44px -22px rgba(27, 27, 26, 0.4);
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', 'Segoe UI',
+    system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111110;
+    --surface: #1e1e1c;
+    --text: #ecebe6;
+    --dim: #8e8c86;
+    --line: rgba(236, 235, 230, 0.12);
+    --shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.9);
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+a {
+  color: inherit;
+}
+
+.page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 88px) clamp(16px, 4vw, 40px) 40px;
+}
+
+/* ── 머리 ─────────────────────────── */
+
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+  border-bottom: 1px solid var(--line);
+}
+
+.masthead h1,
+.count {
+  margin: 0;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+
+.masthead h1 {
+  font-weight: 800;
+}
+
+.masthead p {
+  margin: 14px 0 0;
+  font-size: 15px;
+  color: var(--dim);
+}
+
+.count {
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  color: var(--dim);
+}
+
+/* ── 카드 ─────────────────────────── */
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: clamp(32px, 4vw, 48px) clamp(20px, 2.5vw, 32px);
+}
+
+.card {
+  display: block;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 6px;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: 0 0 0 1px var(--line);
+  transition:
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.4s;
+}
+
+.thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.thumb[data-placeholder]::after {
+  content: attr(data-placeholder);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 64px;
+  font-weight: 800;
+  color: var(--dim);
+  opacity: 0.35;
+}
+
+.card:hover .thumb {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 1px var(--line),
+    var(--shadow);
+}
+
+.card:hover .thumb img {
+  transform: scale(1.03);
+}
+
+.info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 3px;
+  padding: 16px 2px 0;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.url {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font:
+    12.5px/1.4 ui-monospace,
+    'SF Mono',
+    Menlo,
+    monospace;
+  color: var(--dim);
+}
+
+.arrow {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  width: 18px;
+  height: 18px;
+  color: var(--dim);
+  transition:
+    transform 0.25s,
+    color 0.25s;
+}
+
+.card:hover .arrow {
+  color: var(--text);
+  transform: translate(2px, -2px);
+}
+
+/* ── 꼬리 ─────────────────────────── */
+
+.footer {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.footer a:hover {
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item {
+    animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: calc(var(--i) * 60ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+  }
+}
