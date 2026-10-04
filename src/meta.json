@@ -1,4 +1,9 @@
 {
+  "https://tomlim2.github.io/sticker-board/": {
+    "title": "스티커 보드",
+    "thumb": "thumbs/tomlim2-github-io-sticker-board.jpg",
+    "capturedAt": "2026-10-04"
+  },
   "https://tomlim2.github.io/dice-roll/": {
     "title": "주사위 굴리기",
     "thumb": "thumbs/tomlim2-github-io-dice-roll.jpg",
