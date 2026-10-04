@@ -2,7 +2,10 @@
   "https://tomlim2.github.io/sticker-board/": {
     "title": "스티커 보드",
     "thumb": "thumbs/tomlim2-github-io-sticker-board.jpg",
-    "capturedAt": "2026-10-04"
+    "capturedAt": "2026-10-04",
+    "version": "v0.1.1",
+    "deployedAt": "2026-10-04",
+    "deploySha": "bed77e94502229c313b4cfceedb836d40bd31f57"
   },
   "https://tomlim2.github.io/dice-roll/": {
     "title": "주사위 굴리기",
