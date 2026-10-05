@@ -252,6 +252,7 @@ npm version patch   # minor / major 도 됨
 
 | 작업물 | 저장소 | 배포 방식 | 카드 표시 |
 |---|---|---|---|
+| Earth — Pop-up Poster | tomlim2/pop-up-earth | `v*` 태그 → Actions | `v0.1.0` |
 | 스티커 보드 | tomlim2/sticker-board | `v*` 태그 → Actions | `v0.1.1` |
 | 주사위 굴리기 | tomlim2/dice-roll | `v*` 태그 → Actions | `v0.2.0` |
 | 뽕짝 가위바위보 | tomlim2/rock-paper-scissors | `npm run deploy` 가 gh-pages 브랜치에 push (커밋 메시지 `deploy v0.3.0 <sha>` 에서 버전을 읽음) | `v0.3.0` |
