@@ -4,19 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LLM Works</title>
-    <meta name="description" content="LLM과 함께 만들어 배포한 작업물 모음" />
+    <!-- 링크 미리보기 봇이 읽는 고정 글자라 보는 사람 언어를 알 수 없음: 한국어·English 를 같이 적음 -->
+    <meta name="description" content="LLM과 함께 만들어 배포한 작업물 모음 · Works made and deployed with LLMs" />
     <meta property="og:title" content="LLM Works" />
-    <meta property="og:description" content="LLM과 함께 만들어 배포한 작업물 모음" />
+    <meta property="og:description" content="LLM과 함께 만들어 배포한 작업물 모음 · Works made and deployed with LLMs" />
     <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script>
+      // 시스템(브라우저) 언어 목록에서 처음 만나는 ko / en 을 <html lang> 에 적음. 둘 다 없으면 en
+      // 첫 화면이 그려지기 전에 정해서 글자가 바뀌며 깜빡이지 않게 함 (src/main.js 와 style.css 가 이 값을 따름)
+      (() => {
+        const langs = navigator.languages?.length ? navigator.languages : [navigator.language];
+        const found = langs.map((code) => /^(ko|en)\b/i.exec(code)).find(Boolean);
+        document.documentElement.lang = found ? found[1].toLowerCase() : 'en';
+      })();
+    </script>
   </head>
   <body>
     <div class="page">
       <header class="masthead">
         <div>
           <h1>LLM Works</h1>
-          <p>LLM과 함께 만들어 배포한 것들</p>
+          <p><span lang="ko">LLM과 함께 만들어 배포한 것들</span><span lang="en">Things made and deployed with LLMs</span></p>
         </div>
         <span id="count" class="count"></span>
       </header>

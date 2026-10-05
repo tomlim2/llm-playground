@@ -39,6 +39,12 @@ a {
   color: inherit;
 }
 
+/* 시스템 언어와 다른 쪽 글자는 숨김 (<html lang> 은 index.html 의 <head> 스크립트가 정함) */
+html[lang='ko'] [lang='en'],
+html[lang='en'] [lang='ko'] {
+  display: none;
+}
+
 .page {
   max-width: 1240px;
   margin: 0 auto;

@@ -16,11 +16,17 @@ https://tomlim2.github.io/llm-playground/
 
 | 키 | 설명 |
 | --- | --- |
-| `title` | 카드 제목 직접 지정. 없으면 페이지 `<title>` |
+| `title` | 카드 제목 직접 지정. 없으면 페이지 `<title>`. 언어별로 `{ "en": "Dice Roll" }` 도 됨 (아래 '언어') |
 | `thumb` | 직접 만든 이미지 경로(`public/` 기준)나 URL. 있으면 캡처 안 함 |
 | `repo` | `owner/name`. 주소가 `owner.github.io/name/` 꼴이 아니면 배포 확인용으로 지정 |
 | `wait` | 로드 후 찍기 전까지 기다릴 ms (기본 3000). 로딩 화면이 찍히면 늘리기 |
 | `actions` | 찍기 전 조작. Playwright 의 fill / click / press / hover. 예: `[["fill", "#name", "menagerie"], ["press", "#name", "Enter"]]` |
+
+## 언어 (한국어 / English)
+
+허브 화면은 시스템(브라우저) 언어를 따라 한국어 또는 English 로 나옴. 언어 목록에서 처음 만나는 한국어·영어를 쓰고, 둘 다 없으면 English.
+바뀌는 건 머리말과, 버전 칸에 마우스를 올렸을 때 나오는 배포 날짜 글자.
+카드 제목은 작업물 페이지의 `<title>` 이라 자동으로 번역되지 않음. 영어로 보여 주려면 `projects.json` 에 `"title": { "en": "Dice Roll" }` 처럼 적기 (적지 않은 언어는 페이지 제목 그대로).
 
 ## 자동 갱신 (Sync)
 

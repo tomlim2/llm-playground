@@ -10,7 +10,7 @@
 //   --headed                    창을 띄워서 찍기 (헤드리스에서 WebGL/WebGPU 화면이 까맣게 나올 때)
 //
 // projects.json 항목별 옵션
-//   title    카드 제목 직접 지정
+//   title    카드 제목 직접 지정. 문자열이거나 언어별 { "en": "Dice Roll" } (ko / en, 없는 언어는 페이지 <title>)
 //   thumb    직접 만든 이미지. 있으면 캡처 안 함
 //   repo     "owner/name". 주소가 owner.github.io/name/ 꼴이 아닐 때 배포 확인용
 //   wait     로드 후 찍기 전까지 기다릴 ms (기본 3000)

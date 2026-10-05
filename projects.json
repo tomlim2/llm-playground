@@ -1,9 +1,9 @@
 [
-  { "url": "https://tomlim2.github.io/sticker-board/" },
-  { "url": "https://tomlim2.github.io/dice-roll/" },
-  { "url": "https://tomlim2.github.io/rock-paper-scissors/" },
+  { "url": "https://tomlim2.github.io/sticker-board/", "title": { "en": "Sticker Board" } },
+  { "url": "https://tomlim2.github.io/dice-roll/", "title": { "en": "Dice Roll" } },
+  { "url": "https://tomlim2.github.io/rock-paper-scissors/", "title": { "en": "Trot Rock-Paper-Scissors vs Claude" } },
   { "url": "https://tomlim2.github.io/goofy-procedural-creatures/" },
-  { "url": "https://tomlim2.github.io/riso-graphic/" },
+  { "url": "https://tomlim2.github.io/riso-graphic/", "title": { "en": "RISO GRAPHIC — Riso-style samples" } },
   { "url": "https://tomlim2.github.io/mmd-anju/", "wait": 7000 },
   { "url": "https://tomlim2.github.io/matcap-painter/" }
 ]
