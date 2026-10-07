@@ -1,4 +1,12 @@
 {
+  "https://tomlim2.github.io/llm-design-reference/": {
+    "title": "Visual studies — poster & motion",
+    "thumb": "thumbs/tomlim2-github-io-llm-design-reference.jpg",
+    "capturedAt": "2026-10-07",
+    "version": "v1.0.0",
+    "deployedAt": "2026-10-07",
+    "deploySha": "f0b513b8edb49e69f860b0f63e0fbe84cf12faaf"
+  },
   "https://tomlim2.github.io/pop-up-earth/": {
     "title": "Earth — Pop-up Poster",
     "thumb": "thumbs/tomlim2-github-io-pop-up-earth.jpg",

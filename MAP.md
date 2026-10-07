@@ -138,7 +138,7 @@ URL 을 키로 한 객체. `capture.mjs` 가 projects.json 순서대로 다시 �
 | 썸네일 | `thumb` → 생성된 썸네일 + `?v=찍은날짜` (다시 찍어도 파일 이름이 같아서 캐시 무효화용). 둘 다 없으면 도메인 첫 글자 |
 | URL | 프로토콜과 끝 슬래시를 뺀 주소. 길면 말줄임 |
 | 버전 | `version` → 배포 날짜 (`2026.10.02`). 마우스를 올리면 `YYYY-MM-DD 배포` (English 는 `Deployed YYYY-MM-DD`) |
-| 개수 | 머리 오른쪽 두 자리 숫자 (`07`) |
+| 개수 | 머리 오른쪽 두 자리 숫자 (`09`) |
 
 카드는 새 탭으로 연다 (`target="_blank" rel="noopener"`).
 
@@ -248,11 +248,12 @@ npm version patch   # minor / major 도 됨
 
 ## 작업물별 배포 방식과 버전 표시
 
-카드의 버전 칸은 작업물이 어떻게 배포되는지에 따라 달라진다 (2026-10-02 기준, 목록 원본은 projects.json).
+카드의 버전 칸은 작업물이 어떻게 배포되는지에 따라 달라진다 (2026-10-07 기준 최신 배포 상태. 카드는 다음 Sync 때 따라옴. 목록 원본은 projects.json).
 
 | 작업물 | 저장소 | 배포 방식 | 카드 표시 |
 |---|---|---|---|
-| Earth — Pop-up Poster | tomlim2/pop-up-earth | `v*` 태그 → Actions | `v0.1.0` |
+| Visual studies | tomlim2/llm-design-reference | `v*` 태그 → Actions | `v1.0.0` |
+| Earth — Pop-up Poster | tomlim2/pop-up-earth | `v*` 태그 → Actions | `v0.1.5` |
 | 스티커 보드 | tomlim2/sticker-board | `v*` 태그 → Actions | `v0.1.1` |
 | 주사위 굴리기 | tomlim2/dice-roll | `v*` 태그 → Actions | `v0.2.0` |
 | 뽕짝 가위바위보 | tomlim2/rock-paper-scissors | `npm run deploy` 가 gh-pages 브랜치에 push (커밋 메시지 `deploy v0.3.0 <sha>` 에서 버전을 읽음) | `v0.3.0` |
@@ -264,7 +265,7 @@ npm version patch   # minor / major 도 됨
 날짜 대신 버전이 보이게 하려면 그 작업물을 `v*` 태그로 배포하거나, 배포된 커밋에 `v*` 태그를 붙이면 된다.
 이미 허브가 기록한 배포라면 태그만 붙여서는 카드가 안 바뀌니 Sync 를 `only` 로 한 번 돌린다 (위 '알려진 한계').
 
-점검 메모 (2026-10-04): 마지막 태그와 실제 배포가 같은 작업물은 sticker-board, dice-roll, mmd-anju, rock-paper-scissors, goofy.
+점검 메모 (2026-10-07): 마지막 태그와 실제 배포가 같은 작업물은 llm-design-reference, pop-up-earth, sticker-board, dice-roll, mmd-anju, rock-paper-scissors, goofy.
 riso-graphic 은 마지막 태그 v0.20.0 보다 28커밋 앞선 main 을, matcap-painter 는 태그 v1.0.0 보다 2커밋 앞선 main 을 태그 없이 배포 중이다
 (matcap 앱 푸터에는 v2.0.0 이라고 적혀 있음).
 
