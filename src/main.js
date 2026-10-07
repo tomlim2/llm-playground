@@ -16,6 +16,7 @@ function renderCard(project, index) {
   const item = template.content.firstElementChild.cloneNode(true);
   item.style.setProperty('--i', index);
 
+  item.querySelector('.num').textContent = String(index + 1).padStart(2, '0');
   item.querySelector('.card').href = project.url;
   item.querySelector('.title').textContent = titleOf(project) || info.title || shortUrl(project.url);
   item.querySelector('.url').textContent = shortUrl(project.url);

@@ -8,8 +8,8 @@
     <meta name="description" content="LLM과 함께 만들어 배포한 작업물 모음 · Works made and deployed with LLMs" />
     <meta property="og:title" content="LLM Works" />
     <meta property="og:description" content="LLM과 함께 만들어 배포한 작업물 모음 · Works made and deployed with LLMs" />
-    <meta name="theme-color" content="#f5f4f0" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d0d0c" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <script>
       // 시스템(브라우저) 언어 목록에서 처음 만나는 ko / en 을 <html lang> 에 적음. 둘 다 없으면 en
@@ -24,11 +24,8 @@
   <body>
     <div class="page">
       <header class="masthead">
-        <div>
-          <h1>LLM Works</h1>
-          <p><span lang="ko">LLM과 함께 만들어 배포한 것들</span><span lang="en">Things made and deployed with LLMs</span></p>
-        </div>
-        <span id="count" class="count"></span>
+        <h1>LLM Works</h1>
+        <p class="tagline"><span id="count" class="count" aria-hidden="true"></span> <span lang="ko">LLM과 함께 만들어 배포한 것들</span><span lang="en">Things made and deployed with LLMs</span></p>
       </header>
 
       <main>
@@ -43,11 +40,11 @@
     <template id="card-template">
       <li class="item">
         <a class="card" target="_blank" rel="noopener">
+          <div class="meta"><span class="num"></span><span class="version"></span></div>
           <div class="thumb"><img alt="" loading="lazy" decoding="async" width="1280" height="800" /></div>
           <div class="info">
             <h2 class="title"></h2>
             <span class="url"></span>
-            <span class="version"></span>
             <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M7 17 17 7M8 7h9v9" />
             </svg>

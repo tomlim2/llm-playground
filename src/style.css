@@ -1,26 +1,39 @@
+/* 스위스 스타일 (국제 타이포그래피 양식), 선 없는 미니멀
+   - 12열 격자. 모든 글자는 열의 왼쪽 선에 맞춰 왼쪽 정렬. 글꼴은 한 가지, 크기와 굵기로만 위계
+   - 구분은 선이 아니라 여백과 정렬로: 같은 카드 안은 가깝게, 카드 사이는 멀리
+   - 종이 / 먹 / 빨강 하나. 둥근 모서리·그림자·구분선 없음
+   - 색은 작업물 썸네일이 맡고, 화면(껍데기)은 흑백 + 빨강만
+   - 움직임은 처음 나타날 때의 페이드뿐 */
+
 :root {
-  --bg: #f5f4f0;
-  --surface: #e8e6e0;
-  --text: #1b1b1a;
-  --dim: #74726c;
-  --line: rgba(27, 27, 26, 0.1);
-  --shadow: 0 22px 44px -22px rgba(27, 27, 26, 0.4);
+  --paper: #ffffff; /* 순백: 종이색에 가까운 밝은 썸네일도 선 없이 가장자리가 읽힘 */
+  --ink: #111110;
+  --mute: #6b6b66;
+  --tint: rgba(17, 17, 16, 0.08);
+  --accent: #e30613;
+
+  --margin: clamp(16px, 3.4vw, 56px);
+  --gutter: clamp(12px, 1.7vw, 28px);
+
   color-scheme: light;
-  font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR', 'Segoe UI',
-    system-ui, sans-serif;
-  color: var(--text);
-  background: var(--bg);
+  font-family: 'Helvetica Neue', Helvetica, 'Nimbus Sans', Arial, 'Apple SD Gothic Neo', 'Pretendard', 'Noto Sans KR',
+    'Malgun Gothic', sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--paper);
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #111110;
-    --surface: #1e1e1c;
-    --text: #ecebe6;
-    --dim: #8e8c86;
-    --line: rgba(236, 235, 230, 0.12);
-    --shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.9);
+    --paper: #0d0d0c;
+    --ink: #f1f1ee;
+    --mute: #8d8d87;
+    --tint: rgba(241, 241, 238, 0.1);
+    --accent: #ff3b30;
     color-scheme: dark;
   }
 }
@@ -32,11 +45,16 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--bg);
+  background: var(--paper);
 }
 
 a {
   color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
 }
 
 /* 시스템 언어와 다른 쪽 글자는 숨김 (<html lang> 은 index.html 의 <head> 스크립트가 정함) */
@@ -46,45 +64,44 @@ html[lang='en'] [lang='ko'] {
 }
 
 .page {
-  max-width: 1240px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: clamp(40px, 7vw, 88px) clamp(16px, 4vw, 40px) 40px;
+  padding: clamp(24px, 3.4vw, 52px) var(--margin) clamp(32px, 4vw, 64px);
 }
 
 /* ── 머리 ─────────────────────────── */
 
 .masthead {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding-bottom: 28px;
-  margin-bottom: clamp(28px, 4vw, 48px);
-  border-bottom: 1px solid var(--line);
+  position: relative;
+  margin-bottom: clamp(48px, 7vw, 112px);
 }
 
-.masthead h1,
-.count {
-  margin: 0;
-  font-size: clamp(40px, 7vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-}
-
+/* 화면에는 제목을 두지 않음. 탭 이름(<title>)과 스크린리더용 제목(h1)으로만 남김 */
 .masthead h1 {
-  font-weight: 800;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.masthead p {
-  margin: 14px 0 0;
-  font-size: 15px;
-  color: var(--dim);
+/* 숫자가 문장의 첫 단어: "09 Things made and deployed with LLMs" */
+.tagline {
+  margin: 0;
+  max-width: 24em;
+  font-size: clamp(20px, 2.1vw, 30px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .count {
-  font-weight: 300;
+  margin-right: 0.3em;
   font-variant-numeric: tabular-nums;
-  color: var(--dim);
+  color: var(--accent);
 }
 
 /* ── 카드 ─────────────────────────── */
@@ -94,31 +111,64 @@ html[lang='en'] [lang='ko'] {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-  gap: clamp(32px, 4vw, 48px) clamp(20px, 2.5vw, 32px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(48px, 6vw, 96px);
+}
+
+.item {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+@media (min-width: 640px) {
+  .item {
+    grid-column: span 6;
+  }
+}
+
+@media (min-width: 1100px) {
+  .item {
+    grid-column: span 4;
+  }
 }
 
 .card {
   display: block;
-  border-radius: 12px;
   text-decoration: none;
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.num {
+  font-weight: 700;
+}
+
+.version {
+  color: var(--mute);
+  white-space: nowrap;
 }
 
 .thumb {
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border-radius: 12px;
-  background: var(--surface);
-  box-shadow: 0 0 0 1px var(--line);
-  transition:
-    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 0.4s;
+  background: var(--tint);
 }
 
 .thumb img {
@@ -127,98 +177,78 @@ html[lang='en'] [lang='ko'] {
   height: 100%;
   object-fit: cover;
   object-position: top;
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .thumb[data-placeholder]::after {
   content: attr(data-placeholder);
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: 64px;
-  font-weight: 800;
-  color: var(--dim);
-  opacity: 0.35;
-}
-
-.card:hover .thumb {
-  transform: translateY(-4px);
-  box-shadow:
-    0 0 0 1px var(--line),
-    var(--shadow);
-}
-
-.card:hover .thumb img {
-  transform: scale(1.03);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: var(--mute);
+  opacity: 0.5;
 }
 
 .info {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto auto;
-  align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
   column-gap: 12px;
-  row-gap: 3px;
-  padding: 16px 2px 0;
+  margin-top: 14px;
 }
 
 .title {
-  grid-column: 1 / 3;
   margin: 0;
-  font-size: 16px;
-  font-weight: 650;
-  line-height: 1.35;
-  letter-spacing: -0.01em;
+  font-size: clamp(18px, 1.5vw, 23px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
 }
 
 .url {
-  grid-area: 2 / 1;
+  grid-column: 1;
+  margin-top: 6px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font:
-    12.5px/1.4 ui-monospace,
-    'SF Mono',
-    Menlo,
-    monospace;
-  color: var(--dim);
-}
-
-.version {
-  grid-area: 2 / 2;
-  font:
-    12px/1.4 ui-monospace,
-    'SF Mono',
-    Menlo,
-    monospace;
-  color: var(--dim);
-  white-space: nowrap;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--mute);
 }
 
 .arrow {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1 / span 2;
   width: 18px;
   height: 18px;
-  color: var(--dim);
-  transition:
-    transform 0.25s,
-    color 0.25s;
+  margin-top: 2px;
+  stroke-width: 1.75;
 }
 
+/* 마우스를 올리면 번호·제목 밑줄·화살표만 빨강 */
+.card:hover .num,
 .card:hover .arrow {
-  color: var(--text);
-  transform: translate(2px, -2px);
+  color: var(--accent);
+}
+
+.card:hover .title {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: var(--accent);
 }
 
 /* ── 꼬리 ─────────────────────────── */
 
 .footer {
-  margin-top: clamp(56px, 8vw, 96px);
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
+  margin-top: clamp(72px, 10vw, 160px);
   font-size: 13px;
-  color: var(--dim);
+  color: var(--mute);
 }
 
 .footer a {
@@ -226,19 +256,18 @@ html[lang='en'] [lang='ko'] {
 }
 
 .footer a:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .item {
-    animation: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-    animation-delay: calc(var(--i) * 60ms);
+    animation: fade 0.5s ease both;
+    animation-delay: calc(var(--i) * 40ms);
   }
 
-  @keyframes rise {
+  @keyframes fade {
     from {
       opacity: 0;
-      transform: translateY(12px);
     }
   }
 }

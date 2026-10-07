@@ -66,13 +66,13 @@ gh api "repos/tomlim2/riso-graphic/deployments?environment=github-pages&per_page
 ## 구조
 
 ```
-index.html              마크업: 머리(제목·개수), #grid, 카드 <template id="card-template">
+index.html              마크업: 머리글(숨긴 제목 + "개수 + 설명" 한 줄), #grid, 카드 <template id="card-template">
 vite.config.js          base './'
 projects.json           [직접 관리] 작업물 목록. 배열 순서 = 화면 순서
 src/
   main.js               projects.json + meta.json 을 합쳐 카드를 그림
   meta.json             [생성됨] 페이지 제목, 썸네일 경로, 배포 버전·날짜·커밋
-  style.css             레이아웃, 라이트/다크 테마
+  style.css             스위스 스타일 (12열 격자, 선 없음), 라이트/다크 테마
 public/
   favicon.svg
   thumbs/*.jpg          [생성됨] 1280×800 스크린샷
@@ -138,12 +138,28 @@ URL 을 키로 한 객체. `capture.mjs` 가 projects.json 순서대로 다시 �
 | 썸네일 | `thumb` → 생성된 썸네일 + `?v=찍은날짜` (다시 찍어도 파일 이름이 같아서 캐시 무효화용). 둘 다 없으면 도메인 첫 글자 |
 | URL | 프로토콜과 끝 슬래시를 뺀 주소. 길면 말줄임 |
 | 버전 | `version` → 배포 날짜 (`2026.10.02`). 마우스를 올리면 `YYYY-MM-DD 배포` (English 는 `Deployed YYYY-MM-DD`) |
-| 개수 | 머리 오른쪽 두 자리 숫자 (`09`) |
+| 번호 | 화면에 나오는 순서대로 `01`, `02` … (`projects.json` 맨 위가 `01`) |
+| 개수 | 머리글의 첫 단어, 빨간 두 자리 숫자: `09 Things made and deployed with LLMs` |
 
 카드는 새 탭으로 연다 (`target="_blank" rel="noopener"`).
 
-화면: 카드 폭 최소 340px 로 자동 열 수 (`auto-fill`), 썸네일 16:10 위쪽 기준으로 자름, 라이트/다크는 시스템 설정을 따르고
-`prefers-reduced-motion` 이면 등장 애니메이션을 끈다.
+화면: 12열 격자에서 카드가 넓은 화면(1100px~)은 3열, 중간(640px~)은 2열, 좁으면 1열. 썸네일은 16:10 위쪽 기준으로 자름.
+라이트/다크는 시스템 설정을 따르고 `prefers-reduced-motion` 이면 등장 애니메이션(페이드)을 끈다.
+
+### 디자인 (스위스 스타일, 선 없는 미니멀)
+
+| 요소 | 정함 |
+|---|---|
+| 격자 | 12열. 모든 글자와 썸네일이 열의 왼쪽 선에 맞는 왼쪽 정렬. 여백·간격은 `--margin`, `--gutter` 로 한 곳에서 조절 |
+| 구분 | 선(테두리·구분선)·그림자·둥근 모서리 없음. 구분은 여백과 정렬로: 같은 카드 안은 가깝게(12~14px), 카드 사이는 멀리(48~96px) |
+| 색 | 종이(라이트 `#fff` / 다크 `#0d0d0c`), 먹, 흐린 글자, 빨강(`#e30613` / 다크 `#ff3b30`) 하나. 색은 작업물 썸네일이 맡고 껍데기는 흑백 + 빨강만 |
+| 글꼴 | 헬베티카 계열 한 가지 (`Helvetica Neue` → `Arial`, 한글은 `Apple SD Gothic Neo` 등). 크기와 굵기(700 / 400)로만 위계. 숫자는 `tabular-nums` |
+| 제목 | 화면에는 제목을 두지 않음. `<h1>LLM Works</h1>` 는 눈에 안 보이게 두고(스크린리더용) 탭 이름은 `<title>` |
+| 머리글 | 개수가 문장의 첫 단어. `09`(빨강) + 설명을 한 줄로 |
+| 호버·포커스 | 호버: 번호·화살표·제목 밑줄만 빨강 (위치·크기 안 변함). 키보드 포커스: 빨강 윤곽 2px (접근성용) |
+| 썸네일 가장자리 | 선을 안 쓰므로 종이를 순백으로 둬서 밝은 썸네일도 가장자리가 읽히게 함 (종이색과 썸네일 맨 위 밝기 차이: 아이보리 종이 0.9 → 순백 12 / 255) |
+
+기준은 `src/style.css` 맨 위 주석과 `:root` 변수. 새 요소를 넣을 때도 선 대신 여백·정렬로 구분한다.
 
 ### 언어 (한국어 / English)
 
