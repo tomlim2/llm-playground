@@ -10,10 +10,10 @@
   "https://tomlim2.github.io/pop-up-earth/": {
     "title": "Earth — Pop-up Poster",
     "thumb": "thumbs/tomlim2-github-io-pop-up-earth.jpg",
-    "capturedAt": "2026-10-06",
-    "version": "v0.1.3",
-    "deployedAt": "2026-10-06",
-    "deploySha": "220af00f12daaaa1dfd6ac40e412e6be5398af7c"
+    "capturedAt": "2026-10-07",
+    "version": "v0.1.5",
+    "deployedAt": "2026-10-07",
+    "deploySha": "0396a90368e9946035092d917e4415f31b6bf297"
   },
   "https://tomlim2.github.io/sticker-board/": {
     "title": "스티커 보드",
