@@ -2,10 +2,10 @@
   "https://tomlim2.github.io/llm-design-reference/": {
     "title": "디자인 스타일 컬렉션 — 포스터와 모션",
     "thumb": "thumbs/tomlim2-github-io-llm-design-reference.jpg",
-    "capturedAt": "2026-10-08",
-    "version": "v1.2.0",
-    "deployedAt": "2026-10-07",
-    "deploySha": "907fb44cd771e1d9e29cb18ec7d310ba044fad18"
+    "capturedAt": "2026-10-09",
+    "version": "v1.4.0",
+    "deployedAt": "2026-10-09",
+    "deploySha": "ce760d932cb8ab43359f3b314b173a74dfc1acc9"
   },
   "https://tomlim2.github.io/pop-up-earth/": {
     "title": "Earth — Pop-up Poster",
