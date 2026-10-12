@@ -1,4 +1,12 @@
 {
+  "https://tomlim2.github.io/cd-case/": {
+    "title": "오늘의 디스크",
+    "thumb": "thumbs/tomlim2-github-io-cd-case.jpg",
+    "capturedAt": "2026-10-12",
+    "version": "v0.2.0",
+    "deployedAt": "2026-10-12",
+    "deploySha": "1889f839daa5e0e42d1e068a0b00f8d56a4b93d2"
+  },
   "https://tomlim2.github.io/llm-design-reference/": {
     "title": "그래픽 스타일 컬렉션 — 포스터·모션·3D 애니메이션",
     "thumb": "thumbs/tomlim2-github-io-llm-design-reference.jpg",
