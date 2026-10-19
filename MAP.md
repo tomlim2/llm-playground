@@ -268,7 +268,7 @@ npm version patch   # minor / major 도 됨
 
 | 작업물 | 저장소 | 배포 방식 | 카드 표시 |
 |---|---|---|---|
-| 빛우물 | tomlim2/light-well | `v*` 태그 → Actions | `v0.3.1` |
+| 빛우물 | tomlim2/light-well | `v*` 태그 → Actions | `v0.3.3` |
 | 오늘의 디스크 | tomlim2/cd-case | `v*` 태그 → Actions | `v0.2.0` |
 | Visual studies | tomlim2/llm-design-reference | `v*` 태그 → Actions | `v1.0.0` |
 | Earth — Pop-up Poster | tomlim2/pop-up-earth | `v*` 태그 → Actions | `v0.1.5` |

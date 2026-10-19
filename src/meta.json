@@ -3,9 +3,9 @@
     "title": "빛우물",
     "thumb": "thumbs/tomlim2-github-io-light-well.jpg",
     "capturedAt": "2026-10-19",
-    "version": "v0.3.1",
+    "version": "v0.3.3",
     "deployedAt": "2026-10-19",
-    "deploySha": "146c8e0d8a0ee3abd3f6786284515f33a72d073e"
+    "deploySha": "596bd6a388ff51dfecf65f079de427850206361e"
   },
   "https://tomlim2.github.io/cd-case/": {
     "title": "오늘의 디스크",
