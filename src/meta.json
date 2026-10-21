@@ -1,4 +1,12 @@
 {
+  "https://tomlim2.github.io/cloud-sea/": {
+    "title": "구름바다",
+    "thumb": "thumbs/tomlim2-github-io-cloud-sea.jpg",
+    "capturedAt": "2026-10-21",
+    "version": "v0.1.1",
+    "deployedAt": "2026-10-21",
+    "deploySha": "09e66d9af8c9737dac4bf45c34f58d18dcf0ed55"
+  },
   "https://tomlim2.github.io/light-well/": {
     "title": "빛우물",
     "thumb": "thumbs/tomlim2-github-io-light-well.jpg",

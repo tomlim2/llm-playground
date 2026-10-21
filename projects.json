@@ -1,4 +1,5 @@
 [
+  { "url": "https://tomlim2.github.io/cloud-sea/", "title": { "en": "Cloud Sea" }, "wait": 6000 },
   { "url": "https://tomlim2.github.io/light-well/", "title": { "en": "Light Well" }, "wait": 4000 },
   { "url": "https://tomlim2.github.io/cd-case/", "title": { "en": "Disc of the Day" } },
   { "url": "https://tomlim2.github.io/llm-design-reference/" },
