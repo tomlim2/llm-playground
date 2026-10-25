@@ -3,9 +3,9 @@
     "title": "계절나무",
     "thumb": "thumbs/tomlim2-github-io-season-tree.jpg",
     "capturedAt": "2026-10-25",
-    "version": "v0.3.2",
+    "version": "v0.3.3",
     "deployedAt": "2026-10-25",
-    "deploySha": "29122a7f63825b297dde0bdc820fd08c35bca0de"
+    "deploySha": "b5f5cdca1934194947a27b4abf340cc103902a16"
   },
   "https://tomlim2.github.io/cloud-sea/": {
     "title": "구름바다",
