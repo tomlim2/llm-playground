@@ -32,12 +32,12 @@
     "deploySha": "1889f839daa5e0e42d1e068a0b00f8d56a4b93d2"
   },
   "https://tomlim2.github.io/llm-design-reference/": {
-    "title": "그래픽 스타일 컬렉션 — 포스터·모션·3D 애니메이션",
+    "title": "그래픽 스타일 컬렉션 — 포스터·모션·컴포지션",
     "thumb": "thumbs/tomlim2-github-io-llm-design-reference.jpg",
-    "capturedAt": "2026-10-11",
-    "version": "v1.4.8",
-    "deployedAt": "2026-10-11",
-    "deploySha": "9232898c7a1497159f9ce6bf915749b1cc119da6"
+    "capturedAt": "2026-10-31",
+    "version": "v1.4.10",
+    "deployedAt": "2026-10-31",
+    "deploySha": "ba75d1c6b5ed3db2661d1e31bff0a81dc50c1b6c"
   },
   "https://tomlim2.github.io/pop-up-earth/": {
     "title": "Earth — Pop-up Poster",
